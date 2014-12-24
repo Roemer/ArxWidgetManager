@@ -1,0 +1,49 @@
+﻿<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, target-densityDpi=device-dpi, user-scalable=no" />
+    <title>Arx Clock</title>
+    <style>
+        h1 {
+            color: rgb(255,255,255);
+            text-align: center;
+        }
+
+        #clockDiv {
+            font-size: 80px;
+            color: white;
+            text-align: center;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            setInterval(updateDigitalClock, 1000);
+        });
+
+        function updateDigitalClock() {
+            var now = new Date();
+            var h = now.getHours();
+            var m = now.getMinutes();
+            var s = now.getSeconds();
+            m = padNumber(m);
+            s = padNumber(s);
+            document.getElementById('clockDiv').innerHTML = h + ":" + m + ":" + s;
+        }
+
+        function padNumber(num) {
+            if (num < 10) { return "0" + num; }
+            return num;
+        }
+    </script>
+</head>
+<body>
+    <h1 id="appletTitle">Arx Clock</h1>
+    <div id="clockDiv"> </div>
+</body>
+</html>
