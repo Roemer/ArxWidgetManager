@@ -1,0 +1,83 @@
+﻿<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, target-densityDpi=device-dpi, user-scalable=no" />
+    <title>Arx Sound Switch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: rgb(255, 255, 255);
+            text-align: center;
+        }
+
+        #hiddenData {
+            display: none;
+        }
+
+        .sounddevice {
+            font-size: 30px;
+            color: white;
+            text-align: center;
+            /*display: none;*/
+        }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        onPropertyUpdate = function () {
+            // Get and decode the json object from the hidden data
+            var dataString = document.getElementById("hiddenData").innerText;
+            var decodedData = decodeHtml(dataString);
+            try {
+                var dataJson = JSON.parse(decodedData);
+            } catch (err) {
+                alert(err.message);
+                return;
+            }
+
+            var dataNode = document.getElementById("data");
+            for (var i = 0; i < dataNode.children.length; i++) {
+                var currentDeviceNode = dataNode.children[i];
+                if (i < dataJson.length) {
+                    var soundObject = dataJson[i];
+                    currentDeviceNode.style.display = "block";
+                    currentDeviceNode.children[0].id = "device_" + soundObject.Index;
+                    currentDeviceNode.children[0].innerText = soundObject.Name;
+                } else {
+                    currentDeviceNode.style.display = "none";
+                }
+            }
+        }
+
+        function decodeHtml(html) {
+            var txt = document.createElement("textarea");
+            txt.innerHTML = html;
+            return txt.value;
+        }
+    </script>
+</head>
+<body>
+    <h1 id="appletTitle">Arx Sound Switcher</h1>
+    <div id="hiddenData"></div>
+    <div id="data">
+        <div class="sounddevice">
+            <div id="device1">Some Name</div>
+        </div>
+        <div class="sounddevice">
+            <div id="device2">Some Name</div>
+        </div>
+        <div class="sounddevice">
+            <div id="device3">Some Name</div>
+        </div>
+        <div class="sounddevice">
+            <div id="device4">Some Name</div>
+        </div>
+        <div class="sounddevice">
+            <div id="device5">Some Name</div>
+        </div>
+    </div>
+</body>
+</html>
