@@ -21,8 +21,8 @@
         .sounddevice {
             font-size: 30px;
             color: white;
-            text-align: center;
-            /*display: none;*/
+            display: none;
+            clear: both;
         }
     </style>
     <script src="jquery-1.11.1.min.js"></script>
@@ -39,17 +39,27 @@
             }
 
             var dataNode = document.getElementById("data");
-            for (var i = 0; i < dataNode.children.length; i++) {
-                var currentDeviceNode = dataNode.children[i];
-                if (i < dataJson.length) {
-                    var soundObject = dataJson[i];
-                    currentDeviceNode.style.display = "block";
-                    currentDeviceNode.children[0].id = "device_" + soundObject.Index;
-                    currentDeviceNode.children[0].innerText = soundObject.Name;
-                } else {
-                    currentDeviceNode.style.display = "none";
-                }
+            while (dataNode.firstChild) {
+                dataNode.removeChild(dataNode.firstChild);
             }
+            for (var i = 0; i < dataJson.length; i++) {
+                var soundObject = dataJson[i];
+                var clickId = "device_" + soundObject.Index;
+                var currentDeviceNode = document.getElementById("cloneable").cloneNode(true);
+                currentDeviceNode.addEventListener("click", createClickFunction(clickId), false);
+                currentDeviceNode.children[1].innerText = soundObject.Name;
+                currentDeviceNode.style.display = "block";
+                if (soundObject.IsDefault) {
+                    currentDeviceNode.children[0].innerHTML = "<img src='checkmark.png' style='height: 100%; max-height: 100%;'>";
+                } else {
+                    currentDeviceNode.children[0].innerHTML = "&nbsp;";
+                }
+                dataNode.appendChild(currentDeviceNode);
+            }
+        }
+
+        function createClickFunction(id) {
+            return function () { ACBridge.click(id); };
         }
 
         function decodeHtml(html) {
@@ -62,22 +72,10 @@
 <body>
     <h1 id="appletTitle">Arx Sound Switcher</h1>
     <div id="hiddenData"></div>
-    <div id="data">
-        <div class="sounddevice">
-            <div id="device1">Some Name</div>
-        </div>
-        <div class="sounddevice">
-            <div id="device2">Some Name</div>
-        </div>
-        <div class="sounddevice">
-            <div id="device3">Some Name</div>
-        </div>
-        <div class="sounddevice">
-            <div id="device4">Some Name</div>
-        </div>
-        <div class="sounddevice">
-            <div id="device5">Some Name</div>
-        </div>
+    <div id="data"></div>
+    <div id="cloneable" class="sounddevice">
+        <div style="float: left; height: 64px; width: 64px;"></div>
+        <div style="display: inline; vertical-align: middle;">Some Name</div>
     </div>
 </body>
 </html>

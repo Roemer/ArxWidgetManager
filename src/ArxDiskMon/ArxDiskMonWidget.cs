@@ -1,6 +1,6 @@
 ﻿using Arx.Shared;
+using FlauLib.Tools;
 using System;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -21,17 +21,18 @@ namespace ArxDiskMon
             get { return "ArxDiskMon"; }
         }
 
-        private readonly string[] _diskNames;
+        private readonly AppSettings _settings;
 
-        public ArxDiskMonWidget() : base(5000)
+        public ArxDiskMonWidget()
+            : base(5000)
         {
-            _diskNames = File.ReadAllLines("ArxDiskMonSettings.ini");
+            _settings = PortableConfiguration.Load<AppSettings>("General", "ArxDiskMonSettings");
         }
 
         protected override void DoWork()
         {
             var sb = new StringBuilder();
-            foreach (var diskName in _diskNames)
+            foreach (var diskName in _settings.FilePaths)
             {
                 if (String.IsNullOrWhiteSpace(diskName)) { continue; }
                 var diskSpace = GetDiskSpace(diskName);

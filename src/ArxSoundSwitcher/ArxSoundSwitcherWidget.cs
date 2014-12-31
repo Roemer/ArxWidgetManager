@@ -23,6 +23,7 @@ namespace ArxSoundSwitcher
         {
             base.DeviceConnected(deviceType);
             bool a = Add(EmbeddedResourceReader.GetBytes("ArxSoundSwitcher.Resources.index.html"), "index.html");
+            a = Add(EmbeddedResourceReader.GetBytes("ArxSoundSwitcher.Resources.checkmark.png"), "checkmark.png");
             a = Add(EmbeddedResourceReader.GetBytes("ArxSoundSwitcher.Resources.jquery-1.11.1.min.js"), "jquery-1.11.1.min.js");
             a = SetIndex("index.html");
         }
@@ -30,20 +31,26 @@ namespace ArxSoundSwitcher
         protected override void WidgetFocus(LogiArxOrientation orientation)
         {
             base.WidgetFocus(orientation);
-
-            var devices = _endPointControllerWrapper.GetAll();
-            var jsonString = JsonConvert.SerializeObject(devices);
-
-            SetContentById("hiddenData", HttpUtility.HtmlEncode(jsonString));
+            SendCurrent();
         }
 
         protected override void Tapped(string tappedElementId)
         {
-            Console.WriteLine(tappedElementId);
             if (tappedElementId.StartsWith("device_"))
             {
-                _endPointControllerWrapper.Activate(Convert.ToInt32(tappedElementId.Substring(7)));
+                var deviceId = Convert.ToInt32(tappedElementId.Substring(7));
+                Console.WriteLine("Activating Device {0}", deviceId);
+                _endPointControllerWrapper.Activate(deviceId);
+                System.Threading.Thread.Sleep(1000);
+                SendCurrent();
             }
+        }
+
+        private void SendCurrent()
+        {
+            var devices = _endPointControllerWrapper.GetAll();
+            var jsonString = JsonConvert.SerializeObject(devices);
+            SetContentById("hiddenData", HttpUtility.HtmlEncode(jsonString));
         }
     }
 }

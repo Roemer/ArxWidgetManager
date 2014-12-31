@@ -65,6 +65,7 @@
     </None>
     <EmbeddedResource Include="Resources\index.html" />
     <EmbeddedResource Include="Resources\jquery-1.11.1.min.js" />
+    <EmbeddedResource Include="Resources\checkmark.png" />
     <Content Include="sound.ico" />
   </ItemGroup>
   <ItemGroup>

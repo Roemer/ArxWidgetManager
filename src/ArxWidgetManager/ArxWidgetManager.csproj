@@ -39,6 +39,9 @@
     <ApplicationIcon>LogitechG.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -62,6 +65,7 @@
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Models\Widget.cs" />
+    <Compile Include="Core\PortableConfiguration.cs" />
     <Compile Include="SampleDataContext.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\WidgetViewModel.cs" />
@@ -97,6 +101,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
