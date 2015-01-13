@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArxDiskMon", "ArxDiskMon\Ar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArxSoundSwitcher", "ArxSoundSwitcher\ArxSoundSwitcher.csproj", "{958D76AA-587F-4825-BBF7-5AEF2D23D287}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArxNetMon", "ArxNetMon\ArxNetMon.csproj", "{320C5669-1128-461C-AFEF-93E8A8A7A464}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{958D76AA-587F-4825-BBF7-5AEF2D23D287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{958D76AA-587F-4825-BBF7-5AEF2D23D287}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{958D76AA-587F-4825-BBF7-5AEF2D23D287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{320C5669-1128-461C-AFEF-93E8A8A7A464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{320C5669-1128-461C-AFEF-93E8A8A7A464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{320C5669-1128-461C-AFEF-93E8A8A7A464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{320C5669-1128-461C-AFEF-93E8A8A7A464}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -46,6 +46,7 @@ namespace ArxWidgetManager.Views
                 widget.WidgetStartedEvent += widget_WidgetStartedEvent;
                 widget.WidgetStoppedEvent += widget_WidgetStoppedEvent;
                 var widgetViewModel = new WidgetViewModel(widget);
+                widgetViewModel.WidgetRemovedEvent += model => _mainModel.Widgets.Remove(model);
                 _mainModel.Widgets.Add(widgetViewModel);
                 _mainModel.StatusText = String.Format("Widget '{0}' (v. {1}) loaded", widget.Name, widget.Version);
             }

@@ -23,10 +23,12 @@ namespace ArxWidgetManager.Models
         {
             var fileVersionInfo = FileVersionInfo.GetVersionInfo(widgetExecutable);
 
-            var widget = new Widget();
-            widget._executablePath = widgetExecutable;
-            widget.Name = fileVersionInfo.FileDescription;
-            widget.Version = fileVersionInfo.FileVersion;
+            var widget = new Widget
+            {
+                _executablePath = widgetExecutable,
+                Name = fileVersionInfo.FileDescription,
+                Version = fileVersionInfo.FileVersion
+            };
 
             var icon = IconLoader.GetNew(widgetExecutable);
             var bmp = icon.ToBitmap();
@@ -46,14 +48,19 @@ namespace ArxWidgetManager.Models
         {
             if (_widgetProcess == null || _widgetProcess.HasExited)
             {
-                _widgetProcess = new Process();
-                _widgetProcess.StartInfo.FileName = _executablePath;
-                _widgetProcess.StartInfo.WorkingDirectory = Path.GetDirectoryName(_executablePath);
-                _widgetProcess.StartInfo.Arguments = "";
-                _widgetProcess.StartInfo.UseShellExecute = false;
-                _widgetProcess.StartInfo.CreateNoWindow = true;
-                _widgetProcess.StartInfo.RedirectStandardOutput = true;
-                _widgetProcess.StartInfo.RedirectStandardInput = true;
+                _widgetProcess = new Process
+                {
+                    StartInfo =
+                    {
+                        FileName = _executablePath,
+                        WorkingDirectory = Path.GetDirectoryName(_executablePath),
+                        Arguments = "",
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                        RedirectStandardOutput = true,
+                        RedirectStandardInput = true
+                    }
+                };
                 _widgetProcess.Start();
                 OnWidgetStarted();
             }
@@ -61,11 +68,11 @@ namespace ArxWidgetManager.Models
 
         public void Stop()
         {
-            if (_widgetProcess.HasExited) { return; }
+            if (_widgetProcess == null || _widgetProcess.HasExited) { return; }
             // Close
             if (!_widgetProcess.CloseMainWindow())
             {
-                StreamWriter stdInputWriter = _widgetProcess.StandardInput;
+                var stdInputWriter = _widgetProcess.StandardInput;
                 stdInputWriter.Write("q");
                 stdInputWriter.Close();
             }

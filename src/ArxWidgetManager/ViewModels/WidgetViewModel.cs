@@ -1,4 +1,5 @@
-﻿using ArxWidgetManager.Core;
+﻿using System;
+using ArxWidgetManager.Core;
 using ArxWidgetManager.Models;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -14,6 +15,9 @@ namespace ArxWidgetManager.ViewModels
         public ImageSource Image { get { return _widget.Image; } }
 
         public ICommand ClickCommand { get; private set; }
+        public ICommand DeleteCommand { get; private set; }
+
+        public event Action<WidgetViewModel> WidgetRemovedEvent;
 
         public WidgetViewModel(Widget widget)
         {
@@ -30,6 +34,18 @@ namespace ArxWidgetManager.ViewModels
                     _widget.Stop();
                 }
             });
+
+            DeleteCommand = new RelayCommand(param =>
+            {
+                _widget.Stop();
+                OnWidgetRemoved();
+            });
+        }
+
+        protected void OnWidgetRemoved()
+        {
+            var handler = WidgetRemovedEvent;
+            if (handler != null) handler(this);
         }
     }
 }

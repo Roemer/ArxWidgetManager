@@ -6,18 +6,22 @@ using System.Runtime.CompilerServices;
 
 namespace ArxWidgetManager.Core
 {
+    /// <summary>
+    /// Object which automatically handles INotifyPropertyChanged events
+    /// Last updated: 13.01.2015
+    /// </summary>
     public abstract class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private Dictionary<string, object> _backingFieldValues = new Dictionary<string, object>();
+        private readonly Dictionary<string, object> _backingFieldValues = new Dictionary<string, object>();
 
         /// <summary>
         /// Gets a property value from the internal backing field
         /// </summary>
         protected T GetProperty<T>([CallerMemberName] string propertyName = null)
         {
-            object value = null;
+            object value;
             if (_backingFieldValues.TryGetValue(propertyName, out value))
                 return value == null ? default(T) : (T)value;
             return default(T);

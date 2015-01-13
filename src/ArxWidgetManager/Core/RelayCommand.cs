@@ -4,6 +4,10 @@ using System.Windows.Input;
 
 namespace ArxWidgetManager.Core
 {
+    /// <summary>
+    /// Class to easy create ICommands
+    /// Last updated: 13.01.2015
+    /// </summary>
     public class RelayCommand : ICommand
     {
         private readonly Action<object> _methodToExecute;
