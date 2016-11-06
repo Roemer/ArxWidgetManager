@@ -11,15 +11,9 @@ namespace ArxDiskMon
         [DllImport("kernel32")]
         public static extern int GetDiskFreeSpaceEx(string lpDirectoryName, ref long lpFreeBytesAvailable, ref long lpTotalNumberOfBytes, ref long lpTotalNumberOfFreeBytes);
 
-        protected override string Identifier
-        {
-            get { return "flauschig.arxdiskmon"; }
-        }
+        protected override string Identifier => "flauschig.arxdiskmon";
 
-        protected override string Name
-        {
-            get { return "ArxDiskMon"; }
-        }
+        protected override string Name => "ArxDiskMon";
 
         private readonly AppSettings _settings;
 
@@ -44,17 +38,17 @@ namespace ArxDiskMon
 
         protected override void DeviceConnected(LogiArxDeviceType deviceType)
         {
-            bool a = Add(EmbeddedResourceReader.GetBytes("ArxDiskMon.Resources.index.html"), "index.html");
+            var a = Add(EmbeddedResourceReader.GetBytes("ArxDiskMon.Resources.index.html"), "index.html");
             a = SetIndex("index.html");
         }
 
         private DiskSpace GetDiskSpace(string diskName)
         {
-            string lpDirectoryName = diskName;
+            var lpDirectoryName = diskName;
             long lpFreeBytesAvailable = 0;
             long lpTotalNumberOfBytes = 0;
             long lpTotalNumberOfFreeBytes = 0;
-            int bRC = GetDiskFreeSpaceEx(lpDirectoryName, ref lpFreeBytesAvailable, ref lpTotalNumberOfBytes, ref lpTotalNumberOfFreeBytes);
+            var bRC = GetDiskFreeSpaceEx(lpDirectoryName, ref lpFreeBytesAvailable, ref lpTotalNumberOfBytes, ref lpTotalNumberOfFreeBytes);
             return new DiskSpace { FreeBytes = lpFreeBytesAvailable, TotalBytes = lpTotalNumberOfBytes };
         }
 
@@ -62,7 +56,7 @@ namespace ArxDiskMon
         {
             public long FreeBytes { get; set; }
             public long TotalBytes { get; set; }
-            public long UsedBytes { get { return TotalBytes - FreeBytes; } }
+            public long UsedBytes => TotalBytes - FreeBytes;
         }
 
         private static readonly string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };

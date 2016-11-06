@@ -9,20 +9,14 @@ namespace ArxSoundSwitcher
     {
         private readonly EndPointControllerWrapper _endPointControllerWrapper = new EndPointControllerWrapper();
 
-        protected override string Identifier
-        {
-            get { return "flauschig.arxsoundswitcher"; }
-        }
+        protected override string Identifier => "flauschig.arxsoundswitcher";
 
-        protected override string Name
-        {
-            get { return "ArxSndSwitch"; }
-        }
+        protected override string Name => "ArxSndSwitch";
 
         protected override void DeviceConnected(LogiArxDeviceType deviceType)
         {
             base.DeviceConnected(deviceType);
-            bool a = Add(EmbeddedResourceReader.GetBytes("ArxSoundSwitcher.Resources.index.html"), "index.html");
+            var a = Add(EmbeddedResourceReader.GetBytes("ArxSoundSwitcher.Resources.index.html"), "index.html");
             a = Add(EmbeddedResourceReader.GetBytes("ArxSoundSwitcher.Resources.checkmark.png"), "checkmark.png");
             a = Add(EmbeddedResourceReader.GetBytes("ArxSoundSwitcher.Resources.jquery-1.11.1.min.js"), "jquery-1.11.1.min.js");
             a = SetIndex("index.html");

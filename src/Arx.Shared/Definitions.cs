@@ -9,25 +9,25 @@ namespace Arx.Shared
         AndroidNormal = LogitechArx.LOGI_ARX_DEVICETYPE_ANDROID_NORMAL,
         AndroidLarge = LogitechArx.LOGI_ARX_DEVICETYPE_ANDROID_LARGE,
         AndroidXLarge = LogitechArx.LOGI_ARX_DEVICETYPE_ANDROID_XLARGE,
-        AndroidOther = LogitechArx.LOGI_ARX_DEVICETYPE_ANDROID_OTHER,
+        AndroidOther = LogitechArx.LOGI_ARX_DEVICETYPE_ANDROID_OTHER
     }
 
     public enum LogiArxOrientation
     {
         Portrait = LogitechArx.LOGI_ARX_ORIENTATION_PORTRAIT,
-        Landscame = LogitechArx.LOGI_ARX_ORIENTATION_LANDSCAPE,
+        Landscame = LogitechArx.LOGI_ARX_ORIENTATION_LANDSCAPE
     }
 
     public enum LogiArxError
     {
         Success = 0,
-        WrongParameterFOrmat = 1,
+        WrongParameterFormat = 1,
         NullParameterNotSupported = 2,
         WrongFilePath = 3,
         SdkNotInitialized = 4,
         SdkAlreadyInitialized = 5,
         ConnectionWithGamingSoftwareBroken = 6,
         ErrorCreatingThread = 7,
-        ErrorCopyingMemory = 8,
+        ErrorCopyingMemory = 8
     }
 }

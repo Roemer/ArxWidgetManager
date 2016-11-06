@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArxWidgetManager", "ArxWidgetManager\ArxWidgetManager.csproj", "{2742585C-0E4F-4A4A-92D6-FCC062A3C0F8}"
 EndProject
@@ -19,6 +19,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArxSoundSwitcher", "ArxSoundSwitcher\ArxSoundSwitcher.csproj", "{958D76AA-587F-4825-BBF7-5AEF2D23D287}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArxNetMon", "ArxNetMon\ArxNetMon.csproj", "{320C5669-1128-461C-AFEF-93E8A8A7A464}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Widgets", "Widgets", "{3D9A3909-ABDD-4D86-BAB2-51EB2FD7AB9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,5 +55,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DF04A897-9190-40FE-A188-76FD545E4706} = {3D9A3909-ABDD-4D86-BAB2-51EB2FD7AB9C}
+		{448CF640-241E-43EA-ACEE-D7E8A5510285} = {3D9A3909-ABDD-4D86-BAB2-51EB2FD7AB9C}
+		{958D76AA-587F-4825-BBF7-5AEF2D23D287} = {3D9A3909-ABDD-4D86-BAB2-51EB2FD7AB9C}
+		{320C5669-1128-461C-AFEF-93E8A8A7A464} = {3D9A3909-ABDD-4D86-BAB2-51EB2FD7AB9C}
 	EndGlobalSection
 EndGlobal

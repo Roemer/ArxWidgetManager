@@ -62,8 +62,8 @@ namespace ArxWidgetManager.Win32
 
         public static Icon GetNew(string moduleName = null)
         {
-            IntPtr[] phicon = new IntPtr[] { IntPtr.Zero };
-            IntPtr[] piconid = new IntPtr[] { IntPtr.Zero };
+            var phicon = new IntPtr[] { IntPtr.Zero };
+            var piconid = new IntPtr[] { IntPtr.Zero };
             var ret = PrivateExtractIcons(moduleName, 0, 128, 128, phicon, piconid, 1, 0);
             var icon = Icon.FromHandle(phicon[0]);
             return icon;
@@ -82,8 +82,8 @@ namespace ArxWidgetManager.Win32
 
         public static Icon Get(string moduleName)
         {
-            IntPtr[] largeIcon = new IntPtr[1];
-            IntPtr[] smallIcon = new IntPtr[1];
+            var largeIcon = new IntPtr[1];
+            var smallIcon = new IntPtr[1];
             var ret = ExtractIconEx(moduleName, 0, largeIcon, smallIcon, 1);
             var icon = Icon.FromHandle(largeIcon[0]);
             //DestroyIcon(largeIcon[0]);

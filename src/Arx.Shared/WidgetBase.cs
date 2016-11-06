@@ -184,8 +184,7 @@ namespace Arx.Shared
 
         private void OnBeforeStopEvent()
         {
-            var handler = BeforeStopEvent;
-            if (handler != null) handler();
+            BeforeStopEvent?.Invoke();
         }
     }
 }

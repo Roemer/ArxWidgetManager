@@ -10,9 +10,9 @@ namespace ArxWidgetManager.ViewModels
     {
         private readonly Widget _widget;
 
-        public string Name { get { return _widget.Name; } }
-        public string Version { get { return _widget.Version; } }
-        public ImageSource Image { get { return _widget.Image; } }
+        public string Name => _widget.Name;
+        public string Version => _widget.Version;
+        public ImageSource Image => _widget.Image;
 
         public ICommand ClickCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }

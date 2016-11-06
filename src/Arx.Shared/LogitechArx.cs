@@ -20,8 +20,10 @@ namespace Arx.Shared
         public const int LOGI_ARX_DEVICETYPE_ANDROID_XLARGE = 0x06;
         public const int LOGI_ARX_DEVICETYPE_ANDROID_OTHER = 0x07;
 
+        public const int LOGI_CUSTOMICON_BYTEARRAY_SIZE = 144 * 144 * 4;
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void logiArxCB(int eventType, int eventValue, [MarshalAs(UnmanagedType.LPWStr)]String eventArg, IntPtr context);
+        public delegate void logiArxCB(int eventType, int eventValue, [MarshalAs(UnmanagedType.LPWStr)]string eventArg, IntPtr context);
 
         public struct logiArxCbContext
         {
@@ -30,25 +32,38 @@ namespace Arx.Shared
         }
 
         [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool LogiArxInit(String identifier, String friendlyName, ref logiArxCbContext callback);
+        public static extern bool LogiArxGetConfigOptionNumber(string configPath, double defaultValue);
         [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool LogiArxAddFileAs(String filePath, String fileName, String mimeType = "");
+        public static extern bool LogiArxGetConfigOptionBool(string configPath, bool defaultValue);
         [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool LogiArxAddContentAs(byte[] content, int size, String fileName, String mimeType = "");
+        public static extern bool LogiArxGetConfigOptionColor(string configPath, int defaultRed, int defaultGreen, int defaultBlue);
         [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool LogiArxAddUTF8StringAs(String stringContent, String fileName, String mimeType = "");
+        public static extern bool LogiArxGetConfigOptionString(string configPath, string defaultValue, int bufferSize);
         [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool LogiArxAddImageFromBitmap(byte[] bitmap, int width, int height, String fileName);
+        public static extern bool LogiArxSetConfigOptionLabel(string configPath, string label);
         [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool LogiArxSetIndex(String fileName);
+        public static extern bool LogiArxInit(string identifier, string friendlyName, ref logiArxCbContext callback);
         [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool LogiArxSetTagPropertyById(String tagId, String prop, String newValue);
+        // Icon should be 144 x 144 in size and 4 bytes per pixel (R,G,B,A).
+        public static extern bool LogiArxInitWithIcon(string identifier, string friendlyName, ref logiArxCbContext callback, byte[] iconByteArray);
         [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool LogiArxSetTagsPropertyByClass(String tagsClass, String prop, String newValue);
+        public static extern bool LogiArxAddFileAs(string filePath, string fileName, string mimeType = "");
         [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool LogiArxSetTagContentById(String tagId, String newContent);
+        public static extern bool LogiArxAddContentAs(byte[] content, int size, string fileName, string mimeType = "");
         [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool LogiArxSetTagsContentByClass(String tagsClass, String newContent);
+        public static extern bool LogiArxAddUTF8StringAs(string stringContent, string fileName, string mimeType = "");
+        [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool LogiArxAddImageFromBitmap(byte[] bitmap, int width, int height, string fileName);
+        [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool LogiArxSetIndex(string fileName);
+        [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool LogiArxSetTagPropertyById(string tagId, string prop, string newValue);
+        [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool LogiArxSetTagsPropertyByClass(string tagsClass, string prop, string newValue);
+        [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool LogiArxSetTagContentById(string tagId, string newContent);
+        [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool LogiArxSetTagsContentByClass(string tagsClass, string newContent);
         [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
         public static extern int LogiArxGetLastError();
         [DllImport("LogitechGArxControlEnginesWrapper.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
