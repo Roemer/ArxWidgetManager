@@ -1,10 +1,9 @@
 ﻿using Arx.Shared;
-using FlauLib.Tools;
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace ArxDiskMon
+namespace Arx.Widget.DiskMon
 {
     public class ArxDiskMonWidget : WorkerWidgetBase
     {
@@ -20,7 +19,7 @@ namespace ArxDiskMon
         public ArxDiskMonWidget()
             : base(5000)
         {
-            _settings = PortableConfiguration.Load<AppSettings>("General", "ArxDiskMonSettings");
+            _settings = new AppSettings();
         }
 
         protected override void DoWork()
@@ -28,9 +27,9 @@ namespace ArxDiskMon
             var sb = new StringBuilder();
             foreach (var diskName in _settings.FilePaths)
             {
-                if (String.IsNullOrWhiteSpace(diskName)) { continue; }
+                if (string.IsNullOrWhiteSpace(diskName)) { continue; }
                 var diskSpace = GetDiskSpace(diskName);
-                sb.AppendFormat(@"{3}: {0} / {1} ({2}%)\r\n", SizeSuffix(diskSpace.FreeBytes, 2), SizeSuffix(diskSpace.TotalBytes, 2), Math.Round(diskSpace.UsedBytes / (double)diskSpace.TotalBytes * 100, 2), diskName);
+                sb.AppendFormat(@"{3}: {0} / {1} ({2}%)\r\n<br/>", SizeSuffix(diskSpace.FreeBytes, 2), SizeSuffix(diskSpace.TotalBytes, 2), Math.Round(diskSpace.UsedBytes / (double)diskSpace.TotalBytes * 100, 2), diskName);
             }
 
             SetContentById("contentDiv", sb.ToString());
@@ -38,7 +37,7 @@ namespace ArxDiskMon
 
         protected override void DeviceConnected(LogiArxDeviceType deviceType)
         {
-            var a = Add(EmbeddedResourceReader.GetBytes("ArxDiskMon.Resources.index.html"), "index.html");
+            var a = Add(EmbeddedResourceReader.GetBytes("Arx.Widget.DiskMon.Resources.index.html"), "index.html");
             a = SetIndex("index.html");
         }
 
@@ -68,7 +67,7 @@ namespace ArxDiskMon
             }
             var mag = (int)Math.Max(0, Math.Log(numBytes, 1024));
             var adjustedSize = Math.Round(numBytes / Math.Pow(1024, mag), decimalPlaces);
-            return String.Format("{0} {1}", adjustedSize, SizeSuffixes[mag]);
+            return string.Format("{0} {1}", adjustedSize, SizeSuffixes[mag]);
         }
     }
 }

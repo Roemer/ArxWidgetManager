@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace ArxSoundSwitcher
+namespace Arx.Widget.SoundSwitcher
 {
     public class SoundObject
     {
@@ -12,7 +12,7 @@ namespace ArxSoundSwitcher
 
         public override string ToString()
         {
-            return String.Format("{0} - {1} (Default: {2})", Index, Name, IsDefault);
+            return string.Format("{0} - {1} (Default: {2})", Index, Name, IsDefault);
         }
     }
 
@@ -26,7 +26,7 @@ namespace ArxSoundSwitcher
             {
                 FileName = "EndPointController.exe",
                 WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory,
-                Arguments = String.Empty,
+                Arguments = string.Empty,
                 UseShellExecute = false,
                 CreateNoWindow = true,
                 RedirectStandardOutput = true,
@@ -36,7 +36,7 @@ namespace ArxSoundSwitcher
 
         public void Activate(int index)
         {
-            _startInfo.Arguments = String.Format("{0}", index);
+            _startInfo.Arguments = string.Format("{0}", index);
             using (var process = Process.Start(_startInfo))
             {
 
@@ -58,7 +58,7 @@ namespace ArxSoundSwitcher
                         var values = device.Split('|');
                         var obj = new SoundObject
                         {
-                            Index = Int32.Parse(values[0]),
+                            Index = int.Parse(values[0]),
                             IsDefault = values[3] == "1",
                             Name = values[1]
                         };

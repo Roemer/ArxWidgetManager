@@ -1,6 +1,6 @@
 ﻿using Arx.Shared;
 
-namespace ArxClock
+namespace Arx.Widget.Clock
 {
     public class ArxClockWidget : WidgetBase
     {
@@ -10,8 +10,8 @@ namespace ArxClock
 
         protected override void DeviceConnected(LogiArxDeviceType deviceType)
         {
-            var a = Add(EmbeddedResourceReader.GetBytes("ArxClock.Resources.index.html"), "index.html");
-            a = Add(EmbeddedResourceReader.GetBytes("ArxClock.Resources.jquery-1.11.1.min.js"), "jquery-1.11.1.min.js");
+            var a = Add(EmbeddedResourceReader.GetBytes("Arx.Widget.Clock.Resources.index.html"), "index.html");
+            a = Add(EmbeddedResourceReader.GetBytes("Arx.Widget.Clock.Resources.jquery-1.11.1.min.js"), "jquery-1.11.1.min.js");
             a = SetIndex("index.html");
         }
     }

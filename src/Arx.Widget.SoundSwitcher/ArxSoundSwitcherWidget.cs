@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Web;
 
-namespace ArxSoundSwitcher
+namespace Arx.Widget.SoundSwitcher
 {
     public class ArxSoundSwitcherWidget : WidgetBase
     {
@@ -16,9 +16,9 @@ namespace ArxSoundSwitcher
         protected override void DeviceConnected(LogiArxDeviceType deviceType)
         {
             base.DeviceConnected(deviceType);
-            var a = Add(EmbeddedResourceReader.GetBytes("ArxSoundSwitcher.Resources.index.html"), "index.html");
-            a = Add(EmbeddedResourceReader.GetBytes("ArxSoundSwitcher.Resources.checkmark.png"), "checkmark.png");
-            a = Add(EmbeddedResourceReader.GetBytes("ArxSoundSwitcher.Resources.jquery-1.11.1.min.js"), "jquery-1.11.1.min.js");
+            var a = Add(EmbeddedResourceReader.GetBytes("Arx.Widget.SoundSwitcher.Resources.index.html"), "index.html");
+            a = Add(EmbeddedResourceReader.GetBytes("Arx.Widget.SoundSwitcher.Resources.checkmark.png"), "checkmark.png");
+            a = Add(EmbeddedResourceReader.GetBytes("Arx.Widget.SoundSwitcher.Resources.jquery-1.11.1.min.js"), "jquery-1.11.1.min.js");
             a = SetIndex("index.html");
         }
 

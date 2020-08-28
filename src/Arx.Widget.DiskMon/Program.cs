@@ -1,13 +1,13 @@
-﻿using Arx.Shared;
-using System;
+﻿using System;
+using Arx.Shared;
 
-namespace ArxSoundSwitcher
+namespace Arx.Widget.DiskMon
 {
     class Program
     {
         static void Main(string[] args)
         {
-            WidgetBase widget = new ArxSoundSwitcherWidget();
+            WidgetBase widget = new ArxDiskMonWidget();
             widget.Start();
             Console.Read();
             widget.Stop();

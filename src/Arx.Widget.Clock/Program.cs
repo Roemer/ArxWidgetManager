@@ -1,13 +1,13 @@
-﻿using Arx.Shared;
-using System;
+﻿using System;
+using Arx.Shared;
 
-namespace ArxDiskMon
+namespace Arx.Widget.Clock
 {
     class Program
     {
         static void Main(string[] args)
         {
-            WidgetBase widget = new ArxDiskMonWidget();
+            WidgetBase widget = new ArxClockWidget();
             widget.Start();
             Console.Read();
             widget.Stop();

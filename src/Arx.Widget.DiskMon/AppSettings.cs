@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ArxDiskMon
+namespace Arx.Widget.DiskMon
 {
     public class AppSettings
     {
@@ -8,7 +8,7 @@ namespace ArxDiskMon
 
         public AppSettings()
         {
-            FilePaths = new List<string> { @"C:\" };
+            FilePaths = new List<string> { @"C:\", @"E:\", @"F:\" };
         }
     }
 }
